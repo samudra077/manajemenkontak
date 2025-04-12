@@ -1,4 +1,33 @@
 "Program Manajemen Kontak"
+
+def melihat_kontak():
+    if kontak:
+        for num, item in enumerate(kontak, start=1):
+            print(f'{num}. {item["Nama"]} ({item["No_Hp"]}), ({item["email"]})')
+        #melihat semua kontak
+    else:
+        print("kontak Masih kosong")
+        return 1
+
+
+def menambah_kontak():
+    # menambahkan kontak
+    Nama = input("Masukan Nama Kontak Baru")
+    No_Hp = input("Masukan No Hp Baru")
+    email = input("Masukan Email Baru")
+    kontak_baru = {'Nama': Nama, 'No_Hp': No_Hp, 'email': email}
+    kontak.append(kontak_baru)  # menambahkan satu list
+    print(f"kontak Baru Bernama {Nama} Berhasil Ditambahkan")
+
+def menghapus_kontak():
+    if melihat_kontak() == 1:
+        return
+    else:
+        # menghapus kont  ak
+        i_hapus = int(input('Masukkan No Yang Akan Dihapus'))
+        del kontak[i_hapus - 1]
+        print(f"kontak yang dimaksud sudah dihapus")
+
 #type Dictionery {"Key" : "Velue"}
 kontak1 = {'Nama' : "Samudra", 'No_Hp':"081113502486", 'email': "Samudra@python"}
 kontak2 = {'Nama' : "andi", 'No_Hp':"081113502484", 'email': "andi@python"}
@@ -16,30 +45,17 @@ while True:
 
     pilihan = input("Masukan Pilihan Menu Kontak ")
     if pilihan =='1':
-        if kontak:
-            for num, item in enumerate(kontak, start=1):
-                print(f'{num}. {item["Nama"]} ({item["No_Hp"]}), ({item["email"]})')
-        #melihat semua kontak
-        else:
-            print("kontak Masih kosong")
-
+        melihat_kontak()
 
     elif pilihan =='2':
-        #menambahkan kontak
-        Nama = input("Masukan Nama Kontak Baru")
-        No_Hp = input("Masukan No Hp Baru")
-        email = input("Masukan Email Baru")
-        kontak_baru = {'Nama': Nama, 'No_Hp': No_Hp, 'email': email}
-        kontak.append(kontak_baru) #menambahkan satu list
-        print(f"kontak Baru Bernama {Nama} Berhasil Ditambahkan")
+        menambah_kontak()
+
     elif pilihan == '3':
-        #menghapus kontak
-        for num, item in enumerate(kontak, start=1):
-            print(f'{num}. {item["Nama"]} ({item["No_Hp"]}), ({item["email"]})')
-        i_hapus = int(input('Masukkan No Yang Akan Dihapus'))
-        del kontak[i_hapus-1]
-        print(f"kontak yang dimaksud sudah dihapus")
+        menghapus_kontak()
+
     elif pilihan =='4':
         break
     else :
+
         print('Anda Memasukan Pilihan Yang Salah')
+        continue
